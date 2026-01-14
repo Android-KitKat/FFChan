@@ -13,6 +13,7 @@ set(SOURCES
   ThemeManager.cpp
   ThemeManager.h
 )
+set(CMAKE_AUTORCC ON)
 qt_add_qml_module(qt_quick_app_qml
     URI FFChan
     VERSION 1.0
@@ -25,6 +26,7 @@ qt_add_qml_module(qt_quick_app_qml
 qt_add_executable(qt_quick_app
   ${SOURCES}
   qml.qrc
+  icon.rc
 )
 
 # On Windows, if the user provided an icon.ico in project root, include a resource
