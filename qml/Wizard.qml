@@ -4,7 +4,7 @@ import QtQuick.Window 2.15
 
 ApplicationWindow {
     // Fixed-size, non-maximizable wizard window
-    flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+    flags: Qt.Window
     visible: true
     width: 320
     height: 320
