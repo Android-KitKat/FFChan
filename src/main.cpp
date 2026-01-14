@@ -18,7 +18,6 @@ int main(int argc, char *argv[]) {
   QCoreApplication::setOrganizationName("FFChan");
   QCoreApplication::setApplicationName("FFChan");
   // Set application icon (used by window decorations and some platforms)
-  app.setWindowIcon(QIcon("qrc:/icon.png"));
   QQuickStyle::setStyle("FluentWinUI3");
   QQmlApplicationEngine engine;
   FFChan::Translator translator;
@@ -57,6 +56,7 @@ int main(int argc, char *argv[]) {
 
   // CRITICAL: Load QML AFTER all context properties are registered
   bool ok = FFChan::prepareEngine(engine);
+  app.setWindowIcon(QIcon("qrc:/icon.png"));
 
   // Now settings have been initialized by prepareEngine — update translator and theme
   translator.setLocale(FFChan::getSetting("language", "en"));
