@@ -1,5 +1,22 @@
 {
   "wizard.welcome": "欢迎使用FFChan~",
   "wizard.intro": "来进行首次使用的配置吧~",
-  "wizard.next": "下一步"
+  "wizard.back": "返回",
+  "wizard.next": "下一步",
+  "wizard.language": "语言",
+  "language.zh_CN": "简体中文",
+  "language.en": "English",
+  "wizard.theme": "设置主题",
+  "wizard.theme.mode": "明暗模式",
+  "wizard.theme.mode.auto": "跟随系统",
+  "wizard.theme.mode.light": "明亮",
+  "wizard.theme.mode.dark": "暗黑",
+  "wizard.theme.color": "主题色",
+  "wizard.ffmpegPath": "配置FFmpeg路径",
+  "wizard.ffmpegPath.noFFmpeg": "错误：未找到FFmpeg，请先下载并安装。",
+  "wizard.ffmpegPath.hint": "从扫描到的路径中选择...",
+  "wizard.ffmpegPath.browse": "浏览",
+  "wizard.ffmpegPath.refresh": "刷新",
+  "wizard.finish.hint": "配置完成～请尽情享受使用吧！",
+  "wizard.finish": "完成"
 }

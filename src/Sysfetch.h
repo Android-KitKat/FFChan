@@ -10,4 +10,7 @@ QColor getSystemThemeColor();
 QString getSystemLanguage();
 QStringList getFFmpegPath();
 
+// Returns "light", "dark" or "auto" (fallback if cannot detect)
+QString getSystemThemeMode();
+
 } // namespace FFChan

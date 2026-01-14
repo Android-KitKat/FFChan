@@ -1,7 +1,5 @@
 set(SOURCES
   main.cpp
-  Backend.cpp
-  Backend.h
   Settings.cpp
   Settings.h
   Loader.cpp
@@ -12,7 +10,16 @@ set(SOURCES
   Sysfetch.h
   SettingsBridge.cpp
   SettingsBridge.h
+  ThemeManager.cpp
   ThemeManager.h
+)
+qt_add_qml_module(qt_quick_app_qml
+    URI FFChan
+    VERSION 1.0
+  OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/FFChan
+    QML_FILES
+      ../qml/MainWindow.qml
+      ../qml/Wizard.qml
 )
 
 qt_add_executable(qt_quick_app

@@ -10,6 +10,7 @@
 #include <QLocale>
 #include <QDirIterator>
 #include <QDebug>
+#include <QStyleHints>
 
 namespace FFChan {
 
@@ -160,6 +161,58 @@ QStringList getFFmpegPath()
     }
 
     return unique;
+}
+
+QString getSystemThemeMode()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+    if (QGuiApplication::instance() && QGuiApplication::styleHints()) {
+        switch (QGuiApplication::styleHints()->colorScheme()) {
+            case Qt::ColorScheme::Dark: return QStringLiteral("dark");
+            case Qt::ColorScheme::Light: return QStringLiteral("light");
+            case Qt::ColorScheme::Unknown: break;
+        }
+    }
+#endif
+
+#if defined(Q_OS_WIN)
+    // Windows: read AppsUseLightTheme from Registry
+    QSettings reg("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
+    QVariant v = reg.value("AppsUseLightTheme");
+    if (v.isValid()) {
+        bool isLight = v.toInt() != 0;
+        return isLight ? QStringLiteral("light") : QStringLiteral("dark");
+    }
+#elif defined(Q_OS_MAC)
+    // macOS: use `defaults read -g AppleInterfaceStyle`
+    QProcess p;
+    p.start("defaults", QStringList() << "read" << "-g" << "AppleInterfaceStyle");
+    if (p.waitForFinished(200)) {
+        QByteArray out = p.readAllStandardOutput().trimmed();
+        if (out == "Dark") return QStringLiteral("dark");
+        return QStringLiteral("light");
+    }
+    return QStringLiteral("light"); // fallback
+#else
+    // Linux: try GNOME setting first (best-effort)
+    {
+        QProcess p;
+        p.start("gsettings", QStringList() << "get" << "org.gnome.desktop.interface" << "color-scheme");
+        if (p.waitForFinished(200)) {
+            const QString out = QString::fromUtf8(p.readAllStandardOutput()).trimmed();
+            if (out.contains("prefer-dark")) return QStringLiteral("dark");
+            if (out.contains("default")) return QStringLiteral("light");
+        }
+    }
+
+    // Fallback: palette heuristic (may be wrong for some themes)
+    if (QGuiApplication::instance()) {
+        const QColor bg = QGuiApplication::palette().color(QPalette::Window);
+        const int brightness = (bg.red() + bg.green() + bg.blue()) / 3;
+        return (brightness < 128) ? QStringLiteral("dark") : QStringLiteral("light");
+    }
+#endif
+    return QStringLiteral("auto"); // fallback
 }
 
 } // namespace FFChan

@@ -1,6 +1,17 @@
 {
-  "app.title": "FFChan Demo",
-  "wizard.welcome": "Welcome to FFChan",
-  "main.hello": "Hello, World!",
-  "controls.clickMe": "Click me"
+  "wizard.welcome": "Welcome to FFChan~",
+  "wizard.intro": "Let's configure for the first time~",
+  "wizard.back": "Back",
+  "wizard.next": "Next",
+  "wizard.language": "Language",
+  "language.zh_CN": "Simplified Chinese",
+  "language.en": "English",
+  "wizard.theme": "Set theme",
+  "wizard.themeColor": "Theme color",
+  "wizard.ffmpegPath": "FFmpeg path",
+  "wizard.ffmpegPath.noFFmpeg": "Error: FFmpeg not found, please download and install first.",
+  "wizard.ffmpegPath.hint": "Browse FFmpeg path, or select from the automatically scanned paths",
+  "wizard.ffmpegPath.refresh": "Refresh",
+  "wizard.finish.hint": "Configuration completed～Please enjoy using it!",
+  "wizard.finish": "Finish"
 }

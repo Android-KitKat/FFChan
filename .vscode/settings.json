@@ -32,10 +32,14 @@
     ],
     "editor.tabSize": 2,
     "terminal.integrated.env.linux": {
-        "QML_IMPORT_PATH": "/usr/lib/qt6/qml"
+        "QML_IMPORT_PATH": "/usr/lib/qt6/qml",
+        "QML2_IMPORT_PATH": "/usr/lib/qt6/qml"
     },
-    "qml.lint.disableMessages": [],
-    "qml.format.enable": true,
-    "qmlls.importPaths": ["/usr/lib/qt6/qml"],
-    "qmlls.buildDir": "${workspaceFolder}/build"
+    "qt-qml.qmlls.additionalImportPaths": [
+        "/usr/lib/qt6/qml",
+        "${workspaceFolder}/build/src/FFChan"
+    ],
+    "qt-qml.qmlls.customArgs": [
+        
+    ]
 }

@@ -7,13 +7,15 @@
 namespace FFChan {
 class Translator : public QObject {
     Q_OBJECT
-    Q_PROPERTY(QString locale READ locale WRITE setLocale NOTIFY localeChanged)
+    Q_PROPERTY(QString locale READ locale NOTIFY localeChanged)
+    Q_PROPERTY(QStringList availableLocales READ availableLocales CONSTANT)
 public:
     explicit Translator(QObject *parent = nullptr);
 
     QString locale() const { return m_locale; }
-    void setLocale(const QString &loc);
-
+    QStringList availableLocales() const { return QStringList({"en", "zh_CN"}); }
+    
+    Q_INVOKABLE void setLocale(const QString &loc);
     Q_INVOKABLE QString tr(const QString &key) const;
     Q_INVOKABLE bool loadLocaleFile(const QString &locale);
 

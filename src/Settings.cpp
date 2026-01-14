@@ -11,9 +11,12 @@ namespace FFChan {
 
 bool SettingsManager::loadYaml(const QString &path, QSettings &qsettings) {
   // Set sensible defaults from the system if not already present
-  if (!qsettings.contains("theme-color")) {
+  if (!qsettings.contains("theme/color")) {
     QColor c = getSystemThemeColor();
-    qsettings.setValue("theme-color", c.name());
+    qsettings.setValue("theme/color", c.name());
+  }
+  if (!qsettings.contains("theme/mode")) {
+    qsettings.setValue("theme/mode", "auto");
   }
   if (!qsettings.contains("ffmpeg-path")) {
     qsettings.setValue("ffmpeg-path", QString());
@@ -31,10 +34,21 @@ bool SettingsManager::loadYaml(const QString &path, QSettings &qsettings) {
       qsettings.setValue("ffmpeg-path", ffmpegPath);
     }
 
-    if (config["theme-color"]) {
-      QString themeColor =
-          QString::fromStdString(config["theme-color"].as<std::string>());
-      qsettings.setValue("theme-color", themeColor);
+    if (config["theme"]) {
+      YAML::Node theme = config["theme"];
+      if (theme["color"]) {
+        QString themeColor =
+            QString::fromStdString(theme["color"].as<std::string>());
+        qsettings.setValue("theme/color", themeColor);
+      }
+      if (theme["mode"]) {
+        QString themeMode =
+            QString::fromStdString(theme["mode"].as<std::string>());
+        if (themeMode != "auto" && themeMode != "light" && themeMode != "dark") {
+          themeMode = "auto";
+        }
+        qsettings.setValue("theme/mode", themeMode);
+      }
     }
 
     if (config["language"]) {
@@ -61,11 +75,20 @@ bool SettingsManager::saveYaml(const QString &path,
           << qsettings.value("ffmpeg-path").toString().toStdString();
     }
 
-    if (qsettings.contains("theme-color")) {
-      out << YAML::Key << "theme-color";
+    // Write nested theme object
+    out << YAML::Key << "theme";
+    out << YAML::BeginMap;
+    if (qsettings.contains("theme/color")) {
+      out << YAML::Key << "color";
       out << YAML::Value
-          << qsettings.value("theme-color").toString().toStdString();
+          << qsettings.value("theme/color").toString().toStdString();
     }
+    if (qsettings.contains("theme/mode")) {
+      out << YAML::Key << "mode";
+      out << YAML::Value
+          << qsettings.value("theme/mode").toString().toStdString();
+    }
+    out << YAML::EndMap;
 
     if (qsettings.contains("language")) {
       out << YAML::Key << "language";
@@ -101,9 +124,12 @@ void initializeSettings(const QString &configPath) {
   g_configPath = configPath;
 
   // Populate defaults from system
-  if (!g_settings->contains("theme-color")) {
+  if (!g_settings->contains("theme/color")) {
     QColor c = getSystemThemeColor();
-    g_settings->setValue("theme-color", c.name());
+    g_settings->setValue("theme/color", c.name());
+  }
+  if (!g_settings->contains("theme/mode")) {
+    g_settings->setValue("theme/mode", "auto");
   }
   if (!g_settings->contains("ffmpeg-path")) {
     g_settings->setValue("ffmpeg-path", QString());
