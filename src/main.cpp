@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
   });
 
   // CRITICAL: Load QML AFTER all context properties are registered
-  bool ok = FFChan::prepareEngine(engine)
+  bool ok = FFChan::prepareEngine(engine);
   // Now settings have been initialized by prepareEngine — update translator and theme
   translator.setLocale(FFChan::getSetting("language", "en"));
   themeManager.setColor(QColor(FFChan::getSetting("theme/color", "#39c5bb")));
