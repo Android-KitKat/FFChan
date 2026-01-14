@@ -13,4 +13,10 @@ public:
   bool saveYaml(const QString &path, const QSettings &qsettings);
 };
 
+// Global settings helpers
+void initializeSettings(const QString &configPath);
+QSettings &globalSettings();
+QString getSetting(const QString &key, const QString &defaultValue = QString());
+void setSetting(const QString &key, const QVariant &value);
+
 } // namespace FFChan

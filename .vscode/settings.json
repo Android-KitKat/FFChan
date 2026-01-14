@@ -1,0 +1,37 @@
+{
+    "cmake.configureOnOpen": false,
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "files.associations": {
+        "*.qml": "qml",
+        "qobject": "cpp",
+        "qstring": "cpp",
+        "qguiapplication": "cpp",
+        "qqmlapplicationengine": "cpp",
+        "*.cppm": "cpp",
+        "*.ixx": "cpp"
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "MicroPython.executeButton": [
+        {
+            "text": "▶",
+            "tooltip": "运行",
+            "alignment": "left",
+            "command": "extension.executeFile",
+            "priority": 3.5
+        }
+    ],
+    "MicroPython.syncButton": [
+        {
+            "text": "$(sync)",
+            "tooltip": "同步",
+            "alignment": "left",
+            "command": "extension.execute",
+            "priority": 4
+        }
+    ],
+    "editor.tabSize": 2,
+    "terminal.integrated.env.linux": {
+        "QML_IMPORT_PATH": "/usr/lib/qt6/qml"
+    }
+}

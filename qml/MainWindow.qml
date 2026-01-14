@@ -5,11 +5,11 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: i18n.tr("app.title")
+    title: (i18n.locale, i18n.tr("app.title"))
 
     Column {
         anchors.centerIn: parent
         spacing: 8
-        Text { text: i18n.tr("main.hello") }
+        Text { text: (i18n.locale, i18n.tr("main.hello")) }
     }
 }

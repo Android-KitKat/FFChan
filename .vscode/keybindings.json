@@ -1,0 +1,14 @@
+[
+    {
+        "key": "f12",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Run Application",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+f12",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Run Application",
+        "when": "editorTextFocus"
+    }
+]

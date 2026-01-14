@@ -1,6 +1,5 @@
 {
-  "app.title": "FFChan 演示",
-  "wizard.welcome": "欢迎使用 FFChan",
-  "main.hello": "你好，世界！",
-  "controls.clickMe": "点击我"
+  "wizard.welcome": "欢迎使用FFChan~",
+  "wizard.intro": "来进行首次使用的配置吧~",
+  "wizard.next": "下一步"
 }

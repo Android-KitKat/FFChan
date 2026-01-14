@@ -11,20 +11,30 @@ bool loadConfigIfExists(const QString &cfgPath, QSettings &settings) {
     return false;
   }
 
-  SettingsManager manager;
+  FFChan::SettingsManager manager;
   return manager.loadYaml(cfgPath, settings);
+}
+
+bool prepareSettings(const QString &cfgPath)
+{
+  bool existed = QFile::exists(cfgPath);
+  initializeSettings(cfgPath);
+  return existed;
 }
 
 bool prepareEngine(QQmlApplicationEngine &engine) {
   QString cfgPath = QDir::current().filePath("config.yaml");
-  QSettings settings;
-  bool ok = loadConfigIfExists(cfgPath, settings);
 
-  if (ok) {
+  bool existed = prepareSettings(cfgPath);
+  #ifndef QT_DEBUG
+  if (existed) {
     engine.load(QUrl(QStringLiteral("qrc:/qml/MainWindow.qml")));
   } else {
+  #endif
     engine.load(QUrl(QStringLiteral("qrc:/qml/Wizard.qml")));
+  #ifndef QT_DEBUG
   }
+  #endif
 
   return !engine.rootObjects().isEmpty();
 }
