@@ -1,5 +1,6 @@
 #include "Backend.h"
 
+namespace FFChan {
 Backend::Backend(QObject *parent)
     : QObject(parent), m_message("Hello from C++")
 {
@@ -16,3 +17,4 @@ void Backend::setMessage(const QString &msg)
     m_message = msg;
     emit messageChanged();
 }
+};

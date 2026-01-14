@@ -1,8 +1,8 @@
-#ifndef BACKEND_H
-#define BACKEND_H
+#pragma once
 
 #include <QObject>
 
+namespace FFChan {
 class Backend : public QObject
 {
     Q_OBJECT
@@ -19,4 +19,4 @@ private:
     QString m_message;
 };
 
-#endif // BACKEND_H
+};
