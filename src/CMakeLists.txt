@@ -13,20 +13,14 @@ set(SOURCES
   ThemeManager.cpp
   ThemeManager.h
 )
-set(CMAKE_AUTORCC ON)
-qt_add_qml_module(qt_quick_app_qml
-    URI FFChan
-    VERSION 1.0
-  OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/FFChan
-    QML_FILES
-      ../qml/MainWindow.qml
-      ../qml/Wizard.qml
-)
 
-qt_add_executable(qt_quick_app
-  ${SOURCES}
-  qml.qrc
-  icon.rc
+qt_add_qml_module(qt_quick_app_qml
+  URI FFChan
+  VERSION 1.0
+  OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/FFChan
+  QML_FILES
+    ../qml/MainWindow.qml
+    ../qml/Wizard.qml
 )
 
 # On Windows, if the user provided an icon.ico in project root, include a resource
@@ -39,6 +33,11 @@ if (WIN32)
     message(STATUS "No icon.ico found in project root; Windows executable will not have bundled icon.")
   endif()
 endif()
+
+qt_add_executable(qt_quick_app
+  ${SOURCES}
+  qml.qrc
+)
 
 target_link_libraries(qt_quick_app PRIVATE Qt6::Quick Qt6::QuickControls2 Qt6::Qml)
 
