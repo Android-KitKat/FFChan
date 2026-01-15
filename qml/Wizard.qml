@@ -3,6 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 
 ApplicationWindow {
+    id: wizardWindow
     // Fixed-size, non-maximizable wizard window
     flags: Qt.Window
     visible: true
@@ -301,7 +302,23 @@ ApplicationWindow {
                     Button {
                         text: (i18n.locale, i18n.tr("wizard.finish"))
                         icon.source: "image://fa/check"
-                        onClicked: Qt.quit()
+                        onClicked: {
+                            var comp = Qt.createComponent("qrc:/qml/MainWindow.qml");
+                            function createAndClose() {
+                                var mainWin = comp.createObject(null);
+                                if (mainWin) {
+                                    mainWin.visible = true;
+                                    wizardWindow.close();
+                                }
+                            }
+                            if (comp.status === Component.Ready) {
+                                createAndClose();
+                            } else {
+                                comp.statusChanged.connect(function() {
+                                    if (comp.status === Component.Ready) createAndClose();
+                                });
+                            }
+                        }
                     }
                 }
             }

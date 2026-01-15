@@ -35,15 +35,15 @@ bool prepareEngine(QQmlApplicationEngine &engine) {
   QString cfgPath = QDir::current().filePath("config.yaml");
 
   bool existed = prepareSettings(cfgPath);
-  #ifndef QT_DEBUG
+  // #ifndef QT_DEBUG
   if (existed) {
     engine.load(QUrl(QStringLiteral("qrc:/qml/MainWindow.qml")));
   } else {
-  #endif
+  // #endif
     engine.load(QUrl(QStringLiteral("qrc:/qml/Wizard.qml")));
-  #ifndef QT_DEBUG
+  // #ifndef QT_DEBUG
   }
-  #endif
+  // #endif
 
   return !engine.rootObjects().isEmpty();
 }

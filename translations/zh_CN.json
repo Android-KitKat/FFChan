@@ -15,8 +15,13 @@
   "wizard.ffmpegPath": "配置FFmpeg路径",
   "wizard.ffmpegPath.noFFmpeg": "未找到FFmpeg",
   "wizard.ffmpegPath.invalidFFmpeg": "所选路径无效。",
-  "wizard.ffmpegPath.hint": "从扫描到的路径中选择...",
+  "wizard.ffmpegPath.hint": "从扫描到的路径中选择",
   "wizard.ffmpegPath.browse": "浏览FFmpeg路径",
   "wizard.finish.hint": "配置完成～请尽情享受使用吧！",
-  "wizard.finish": "完成"
+  "wizard.finish": "完成",
+  "app.title": "FFChan!!!!!",
+  "app.tab.home": "主页",
+  "app.tab.convert": "文件转换",
+  "app.tab.settings": "设置",
+  "app.tab.pictures": "图片处理"
 }

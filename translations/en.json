@@ -15,7 +15,7 @@
   "wizard.ffmpegPath": "Configure FFmpeg Path",
   "wizard.ffmpegPath.noFFmpeg": "FFmpeg not found",
   "wizard.ffmpegPath.invalidFFmpeg": "Invalid FFmpeg path",
-  "wizard.ffmpegPath.hint": "Select from scanned paths...",
+  "wizard.ffmpegPath.hint": "Select from scanned paths",
   "wizard.ffmpegPath.browse": "Browse FFmpeg Path",
   "wizard.finish.hint": "Configuration complete~ Enjoy using it!",
   "wizard.finish": "Finish"
